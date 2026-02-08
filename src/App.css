@@ -9,31 +9,14 @@ body {
   height: 100%;
   width: 100%;
 }
-
 button{
-  background-color: rgb(122, 122, 165);
-  padding: 10px 20px;
+  padding: 10px 16px;
+  background-color: lightblue;
+  color: black;
   border-radius: 10px;
-  font-size: 24px;
-  color: #fff;
   margin: 10px;
-  
-  }
-
-  .user-card{
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  .cards{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+  font: 1.25rem;
+}
+h1{
+  font-size: 32px;
+}
