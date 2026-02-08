@@ -2,51 +2,37 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-
+import axios from "axios";
 
 const App = () => {
-  const [number1, setnumber1] = useState(0);
-  const [number2, setnumber2] = useState(0);
-  const [number3, setnumber3] = useState(0);
+  const [number, setnumber] = useState(0);
+  const [user, setuser] = useState("");
 
-  useEffect(()=>{
-    console.log("number 1 and number 2 are change so the code inside the use effect are running")
-  }, [number1, number2]);
+  async function getData() {
+    const res = await axios.get("https://randomuser.me/api/");
+    setuser(
+      res.data.results[0].name.first + " " + res.data.results[0].name.last,
+    );
+  }
+
+  useEffect(
+    function () {
+      getData();
+    },
+    [number],
+  );
 
   return (
-    <div className="flex">
-      <div>
-        <h1>{number1}</h1>
-        <button
-          onClick={() => {
-            setnumber1(Math.floor(Math.random() * 10));
-          }}
-        >
-          change number 1
-        </button>
-      </div>
-
-      <div>
-        <h1>{number2}</h1>
-        <button
-          onClick={() => {
-            setnumber2(Math.floor(Math.random() * 10));
-          }}
-        >
-          Change number 2
-        </button>
-      </div>
-
-      <div>
-        <h1>{number3}</h1>
-        <button
-          onClick={() => {
-            setnumber3(Math.floor(Math.random() * 10));
-          }}
-        >
-          chnage number 3
-        </button>
-      </div>
+    <div>
+      <h1>{user}</h1>
+      <h1>{number}</h1>
+      <button
+        onClick={() => {
+          setnumber(number + 1);
+        }}
+      >
+        Increase
+      </button>
     </div>
   );
 };
