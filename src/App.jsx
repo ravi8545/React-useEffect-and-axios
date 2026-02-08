@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -8,29 +8,22 @@ import User from "./User";
 import React from "react";
 
 const App = () => {
-  const [allData, setallData] = useState([]);
+  const [count, setCount] = useState(0);
 
-  async function getData() {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/users",
-    );
-    setallData(response.data);
-  }  
+  useEffect(function(){
+    console.log("the app is rendering")
+  }, [count]);
 
-  getData();
   return (
     <div>
-      <button>Get data</button>
-
-      <div className="cards">
-        {allData.map((elem, idx) => {
-          return (
-            <div key={idx}>
-                 <User elem={elem} />;
-            </div>
-          );
-        })}
-      </div>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        Increase
+      </button>
     </div>
   );
 };
